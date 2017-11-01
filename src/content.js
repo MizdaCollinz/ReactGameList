@@ -1,4 +1,6 @@
 import React from 'react';
+import GameInput from './gameInput.js'
+
 
 class Content extends React.Component {
     
@@ -7,11 +9,9 @@ class Content extends React.Component {
             // Regular comments out here
             <section style={sectionStyle}> 
                 {/*Special comment format used here as JSX*/}
-                <div></div>
-
-                <div></div>
-
-                <div></div>
+                <GameInput></GameInput>
+                {/* <div style={fillerStyle} > General Div </div> */}
+                
 
             </section>
         );
@@ -21,7 +21,13 @@ class Content extends React.Component {
 var sectionStyle = {
     backgroundColor: '#363636',
     height: '600px',
-    width: '100%'
+    padding: '50px'
+};
+
+var fillerStyle = {
+    height: '100px',
+    width: '40%',
+    backgroundColor: 'white'
 };
 
 export default Content;
