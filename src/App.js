@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './images/logo.svg';
 import Navi from './navi.js';
 import Content from './content.js';
+import Footer from './footer.js';
 import './styles/App.css';
 
 class App extends Component {
@@ -13,13 +14,19 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <p className="App-intro">
+        <p style={textStyle} className="App-intro">
           This page is built through JSX
         </p>
         <Content></Content>
+        <Footer></Footer>
       </div>
     );
   }
+}
+
+var textStyle = {
+  padding: '20px 0px',
+  fontWeight: 'bold'
 }
 
 export default App;
