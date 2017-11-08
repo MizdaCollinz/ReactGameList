@@ -1,5 +1,5 @@
 import React from 'react';
-import GameInput from './gameInput.js'
+import GameInput from './gameForm/gameInput.js'
 
 
 class Content extends React.Component {
