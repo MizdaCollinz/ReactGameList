@@ -14,13 +14,41 @@ const entries = [{
 
 class GameInput extends React.Component {
     
+    constructor(props){
+        super(props);
+       this.state = {
+           entries:entries
+       };
+       this.onSubmit = this.onSubmit.bind(this);
+    }
+
     onSubmit(e){
-        return;
+        e.preventDefault();
+
+        //Retrieve inputs from the form
+        let form = document.getElementById('EntryForm');
+        let inputs = form.getElementsByTagName('input');
+        let name = inputs[0].value;
+        let year = inputs[1].value;
+        let status = inputs[2].value;
+
+        //Create the data input for a GameEntry
+        let entry = {
+            name: name,
+            year: year,
+            status: status
+        };
+
+        //Update state to include new entry
+        let state = this.state;
+        state.entries.push(entry);
+        this.setState(state);
+        
     }
     
     render(){
         return (
-            <form style={formStyle} >
+            <form id="EntryForm" style={formStyle} >
                 <input name="title" type='text' placeholder='Game Title'></input>
                 <input name="start" type='number' placeholder='Starting Year'></input>
                 <input name="status" type='text' placeholder='Completion Status'></input>
