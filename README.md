@@ -1,4 +1,4 @@
-#React-based Game List Web Application
+# React-based Game List Web Application
 ### Gaining a basic understanding of how to develop using ReactJS
 ### Built from a bootstrapped template
 ### Simple dynamic addition of entries through a form
