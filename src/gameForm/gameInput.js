@@ -2,24 +2,27 @@ import React from 'react';
 import '../styles/gameInput.css';
 import GameEntry from './gameEntry.js';
 
-const entries = [{
-    name: "Resident Evil 7",
-    year:"2017",
-    status:"Finished"
-},{
-    name: "Nier Automata",
-    year:"2017",
-    status:"Glitchy"
-}];
-
 class GameInput extends React.Component {
     
     constructor(props){
         super(props);
-       this.state = {
-           entries:entries
-       };
+        let entries = localStorage.getItem('entries');
+        entries = JSON.parse(entries);
+        
+        if (entries == undefined){
+            entries = [];
+        }
+
+        this.state = {
+            entries:entries
+        };
        this.onSubmit = this.onSubmit.bind(this);
+    }
+
+    persistEntries(){
+        let entries = this.state.entries;
+        let json = JSON.stringify(entries);
+        localStorage.setItem('entries',json);
     }
 
     onSubmit(e){
@@ -43,7 +46,8 @@ class GameInput extends React.Component {
         let state = this.state;
         state.entries.push(entry);
         this.setState(state);
-        
+        this.persistEntries();
+
     }
     
     render(){
@@ -63,7 +67,7 @@ class GameInput extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {entries.map((entry) => {
+                        {this.state.entries.map((entry) => {
                             return (<GameEntry game={entry}></GameEntry>);
                         })}   
                     </tbody>
