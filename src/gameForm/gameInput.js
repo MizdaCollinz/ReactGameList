@@ -32,7 +32,7 @@ class GameInput extends React.Component {
         e.preventDefault();
 
         //Retrieve inputs from the form
-        let form = document.getElementById('EntryForm');
+        let form = document.getElementById('entryForm');
         let inputs = form.getElementsByTagName('input');
         //Names must be unique identifiers for a game entry
         let name = inputs[0].value;
@@ -69,20 +69,27 @@ class GameInput extends React.Component {
         let entries = this.state.entries;
         for (let entry of entries){
             if(entry.name.trim().toUpperCase() === name.trim().toUpperCase()){
+                this.writeError("This game name is already in use");
                 return true;
             }
         }
         return false;
     }
+
+    writeError(error){
+        let errorDiv = document.getElementById('entryError');
+        errorDiv.innerText = error;
+        setTimeout(function(){errorDiv.innerText = ""; }, 5000);
+    }
     
     render(){
         return (
-            <form id="EntryForm" style={formStyle} >
+            <form id="entryForm" style={formStyle} >
                 <input name="title" type='text' placeholder='Game Title'></input>
                 <input name="start" type='number' placeholder='Starting Year'></input>
                 <input name="status" type='text' placeholder='Completion Status'></input>
                 <input type="submit" onClick={this.createEntry} value='+'></input>
-                <div className="form-error" >This is an error message</div>
+                <div id="entryError" className="form-error" >This is an error message</div>
                 <table style={tableStyle}>
                     <thead>
                         <tr>
