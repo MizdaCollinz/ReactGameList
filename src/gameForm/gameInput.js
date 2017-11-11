@@ -18,6 +18,7 @@ class GameInput extends React.Component {
         };
 
        this.createEntry = this.createEntry.bind(this);
+       this.deleteEntry = this.deleteEntry.bind(this);
     }
 
     //Persist entry list in local storage
@@ -60,8 +61,22 @@ class GameInput extends React.Component {
 
     }
 
+    //Delete the entry of the specified game name
     deleteEntry(name){
-        //TODO
+        console.log("TRYING TO DELETE " + name);
+
+        let state = this.state;
+        for (let i=0; i<state.entries.length; i++){
+            let entry = state.entries[i];
+            if (name === entry.name){
+                state.entries.splice(i,1);
+                this.setState(state);
+                this.persistEntries();
+                return true;
+            }
+        }
+        //Name wasnt found
+        return false; 
     }
 
     //Check if entry name already exists
