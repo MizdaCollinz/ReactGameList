@@ -8,30 +8,40 @@ class GameInput extends React.Component {
         super(props);
         let entries = localStorage.getItem('entries');
         entries = JSON.parse(entries);
-        
-        if (entries == undefined){
+
+        if (entries === undefined){
             entries = [];
         }
 
         this.state = {
             entries:entries
         };
-       this.onSubmit = this.onSubmit.bind(this);
+
+       this.createEntry = this.createEntry.bind(this);
     }
 
+    //Persist entry list in local storage
     persistEntries(){
         let entries = this.state.entries;
         let json = JSON.stringify(entries);
         localStorage.setItem('entries',json);
     }
 
-    onSubmit(e){
+    //Create a new entry from form input
+    createEntry(e){
         e.preventDefault();
 
         //Retrieve inputs from the form
         let form = document.getElementById('EntryForm');
         let inputs = form.getElementsByTagName('input');
+        //Names must be unique identifiers for a game entry
         let name = inputs[0].value;
+
+        if(this.isDuplicate(name)){
+            //An entry is not created
+            return;
+        }
+
         let year = inputs[1].value;
         let status = inputs[2].value;
 
@@ -49,6 +59,21 @@ class GameInput extends React.Component {
         this.persistEntries();
 
     }
+
+    deleteEntry(name){
+        //TODO
+    }
+
+    //Check if entry name already exists
+    isDuplicate(name){
+        let entries = this.state.entries;
+        for (let entry of entries){
+            if(entry.name.trim().toUpperCase() === name.trim().toUpperCase()){
+                return true;
+            }
+        }
+        return false;
+    }
     
     render(){
         return (
@@ -56,8 +81,8 @@ class GameInput extends React.Component {
                 <input name="title" type='text' placeholder='Game Title'></input>
                 <input name="start" type='number' placeholder='Starting Year'></input>
                 <input name="status" type='text' placeholder='Completion Status'></input>
-                <input type="submit" onClick={this.onSubmit} value='+'></input>
-            
+                <input type="submit" onClick={this.createEntry} value='+'></input>
+                <div className="form-error" >This is an error message</div>
                 <table style={tableStyle}>
                     <thead>
                         <tr>
@@ -68,7 +93,7 @@ class GameInput extends React.Component {
                     </thead>
                     <tbody>
                         {this.state.entries.map((entry) => {
-                            return (<GameEntry game={entry}></GameEntry>);
+                            return (<GameEntry game={entry} delete={this.deleteEntry}></GameEntry>);
                         })}   
                     </tbody>
                 </table>
@@ -80,11 +105,11 @@ class GameInput extends React.Component {
 
 
 var formStyle = {
-    height: '200px',
+    minHeight: '200px',
     width: '70%',
     margin: '0px auto',
     backgroundColor: 'white',
-    padding: '10px'
+    padding: '20px'
 };
 
 var tableStyle = {
