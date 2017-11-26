@@ -9,6 +9,19 @@ input {
     overflow: auto;
 }
 
-#entryError {
+button, .button {
+    /* Spacing */
+    margin: 0px 5px;
+    padding: 5px 24px;
 
+    /* Design */
+    box-shadow: rgb(84, 163, 247) 0px 1px 0px 0px inset;
+    background: linear-gradient(rgb(0, 125, 193) 5%, rgb(0, 97, 167) 100%) rgb(0, 125, 193);
+    border-radius: 5px;
+    border: 1px solid rgb(18, 77, 119);
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    font-size: 11px;
+    text-decoration: none;
+    text-shadow: rgb(21, 70, 130) 0px 1px 0px;
 }

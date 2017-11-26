@@ -20,7 +20,6 @@ class Content extends React.Component {
 
 var sectionStyle = {
     backgroundColor: '#363636',
-    height: '600px',
     padding: '50px'
 };
 

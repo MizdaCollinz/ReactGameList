@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/gameEntry.css';
 
 class GameEntry extends React.Component {
    
@@ -8,13 +9,18 @@ class GameEntry extends React.Component {
 
         return (
             <tr>
-                <td>{game.name}</td>
+                <td className="entry-name">{game.name}</td>
                 <td>{game.year}</td>
                 <td>{game.status}</td>
-                <td><a onClick={() => deleteEntry(game.name)}>DEL</a></td>
+                <td className="entry-buttons">
+                    <button onClick> Edit </button>
+                    <button onClick={() => deleteEntry(game.name)}> Delete </button>
+                </td>
             </tr>
         );
     }
 }
+
+
 
 export default GameEntry;

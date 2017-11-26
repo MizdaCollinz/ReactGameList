@@ -100,17 +100,19 @@ class GameInput extends React.Component {
     render(){
         return (
             <form id="entryForm" style={formStyle} >
+                <h1>List of Games Played</h1>
                 <input name="title" type='text' placeholder='Game Title'></input>
                 <input name="start" type='number' placeholder='Starting Year'></input>
                 <input name="status" type='text' placeholder='Completion Status'></input>
-                <input type="submit" onClick={this.createEntry} value='+'></input>
-                <div id="entryError" className="form-error" >This is an error message</div>
+                <input type="submit" className="button" onClick={this.createEntry} value='Add a Game'></input>
+                <div id="entryError" className="form-error" ></div>
                 <table style={tableStyle}>
                     <thead>
                         <tr>
                             <th>Title</th>
                             <th>Year</th>
                             <th>Status</th>
+                            <th>Adjustments</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -131,13 +133,17 @@ var formStyle = {
     width: '70%',
     margin: '0px auto',
     backgroundColor: 'white',
-    padding: '20px'
+    padding: '15px 25px',
+    paddingBottom: '30px',
+    overflow: 'visible',
+    marginBottom: '50px'
 };
 
 var tableStyle = {
     width: '80%',
     margin: '0 auto',
-    marginTop: '20px'
+    marginTop: '20px',
+    borderSpacing: '0px'
 }
 
 export default GameInput;
