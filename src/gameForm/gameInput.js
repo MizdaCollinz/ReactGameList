@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/gameInput.css';
 import GameEntry from './gameEntry.js';
+import EditModal from './editModal.js';
 
 class GameInput extends React.Component {
     
@@ -19,6 +20,10 @@ class GameInput extends React.Component {
 
        this.createEntry = this.createEntry.bind(this);
        this.deleteEntry = this.deleteEntry.bind(this);
+       this.editEntry = this.editEntry.bind(this);
+       this.closeModal = this.closeModal.bind(this);
+       this.openEditModal = this.openEditModal.bind(this);
+       
     }
 
     //Persist entry list in local storage
@@ -61,9 +66,33 @@ class GameInput extends React.Component {
 
     }
 
+    //Open modal to edit an entry, input the existing entry values
+    openEditModal(entry){
+        this.entry = entry;
+        //Create edit modal
+        this.setState({editModal: true});
+    }
+
+    //Modify identified entry with values specified in entry
+    editEntry(id,newEntry){
+        let state = this.state;
+        for (let i=0; i<state.entries.length; i++){
+            let entry = state.entries[i];
+            if (entry.name === id){
+                state.entries[i].name = newEntry.name;
+                state.entries[i].year = newEntry.year;
+                state.entries[i].status = newEntry.status;
+                this.setState(state);
+                this.persistEntries();
+                return true;
+            }
+        }
+        //Name wasnt found
+        return false;
+    }
+
     //Delete the entry of the specified game name
     deleteEntry(name){
-        console.log("TRYING TO DELETE " + name);
 
         let state = this.state;
         for (let i=0; i<state.entries.length; i++){
@@ -96,16 +125,23 @@ class GameInput extends React.Component {
         errorDiv.innerText = error;
         setTimeout(function(){errorDiv.innerText = ""; }, 5000);
     }
+
+    closeModal(){
+        this.setState({editModal: false});
+    }
     
     render(){
         return (
-            <form id="entryForm" style={formStyle} >
-                <h1>List of Games Played</h1>
-                <input name="title" type='text' placeholder='Game Title'></input>
-                <input name="start" type='number' placeholder='Starting Year'></input>
-                <input name="status" type='text' placeholder='Completion Status'></input>
-                <input type="submit" className="button" onClick={this.createEntry} value='Add a Game'></input>
-                <div id="entryError" className="form-error" ></div>
+            <div id="entryForm" style={formStyle} >
+                <form>
+                    <h1>List of Games Played</h1>
+                    <input name="title" type='text' placeholder='Game Title'></input>
+                    <input name="start" type='number' placeholder='Starting Year'></input>
+                    <input name="status" type='text' placeholder='Completion Status'></input>
+                    <input type="submit" className="button" onClick={this.createEntry} value='Add a Game'></input>
+                    <div id="entryError" className="form-error"></div>
+                </form>
+
                 <table style={tableStyle}>
                     <thead>
                         <tr>
@@ -117,11 +153,22 @@ class GameInput extends React.Component {
                     </thead>
                     <tbody>
                         {this.state.entries.map((entry) => {
-                            return (<GameEntry game={entry} delete={this.deleteEntry}></GameEntry>);
+                            return (<GameEntry game={entry} delete={this.deleteEntry} edit={this.openEditModal}></GameEntry>);
                         })}   
                     </tbody>
                 </table>
-            </form>
+
+                <EditModal 
+                    status={this.state.editModal} 
+                    close={this.closeModal}
+                    entry={this.entry}
+                    edit={this.editEntry}
+                >
+                    
+                    
+                </EditModal>
+
+            </div>
            
         );
     }

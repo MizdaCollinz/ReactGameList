@@ -6,6 +6,7 @@ class GameEntry extends React.Component {
     render(){
         const {game} = this.props;
         const deleteEntry = this.props.delete;
+        const editEntry = this.props.edit;
 
         return (
             <tr>
@@ -13,7 +14,13 @@ class GameEntry extends React.Component {
                 <td>{game.year}</td>
                 <td>{game.status}</td>
                 <td className="entry-buttons">
-                    <button onClick> Edit </button>
+                    <button onClick={() => editEntry(
+                        {
+                            name: game.name,
+                            year: game.year,
+                            status: game.status
+                        }
+                    )}> Edit </button>
                     <button onClick={() => deleteEntry(game.name)}> Delete </button>
                 </td>
             </tr>
