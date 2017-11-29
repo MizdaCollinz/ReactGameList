@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/gameInput.css';
+import '../styles/buttons.css';
 import GameEntry from './gameEntry.js';
 import EditModal from './editModal.js';
 

@@ -1,5 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
+import '../styles/buttons.css';
+import '../styles/editModal.css';
 
 class EditModal extends React.Component {
     constructor(props){
@@ -43,7 +45,7 @@ class EditModal extends React.Component {
                     onRequestClose={this.props.close}
                     style = {modalStyle}
                 >
-                    <h1>Edit this game entry</h1>
+                    <h2>Edit this game entry</h2>
                     <form>
                         <input name="title" type='text' placeholder='Game Title' ref="title"></input>
                         <br />
@@ -51,7 +53,7 @@ class EditModal extends React.Component {
                         <br />
                         <input name="status" type='text' placeholder='Completion Status' ref="status"></input>
                         <br />
-                        <input type='submit' value= "Save Changes" onClick={this.edit}></input>
+                        <input className="button" type='submit' value= "Save Changes" onClick={this.edit}></input>
                     </form>
 
                 </Modal>
@@ -62,9 +64,10 @@ class EditModal extends React.Component {
 
 var modalStyle = {
     content: {
-        height:'300px',
-        width:'500px',
-        margin: 'auto auto'
+        height:'250px',
+        width:'350px',
+        margin: 'auto auto',
+        textAlign: 'center'
     }
 }
 

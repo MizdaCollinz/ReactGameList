@@ -13,7 +13,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <p style={textStyle} className="App-intro">
-          This page is built through JSX
+          MyGameList Application
         </p>
         <Content></Content>
         <Footer></Footer>
