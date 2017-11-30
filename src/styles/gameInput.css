@@ -1,5 +1,12 @@
 input {
     margin: 10px;
+    vertical-align: super;
+    padding: 2px;
+    padding-left: 5px;
+}
+
+div > input {
+    font-weight: bold;
 }
 
 .form-error{
@@ -14,3 +21,17 @@ button, .button {
     margin: 0px 5px;
     min-width: 80px;
 }
+
+.material-icons {
+    font-size: 24px;
+    line-height: 24px;
+}
+
+h1 {
+    margin-left: 250px;
+    margin: 5px;
+    text-align: left;
+    display: inline-block;
+}
+
+

@@ -136,6 +136,13 @@ class GameInput extends React.Component {
             <div id="entryForm" style={formStyle} >
                 <form>
                     <h1>List of Games Played</h1>
+                    
+                    <div style={filterStyle}>
+                        <i class="material-icons">search</i> 
+                        <input type="search" name="filter" placeholder="Filter games"></input>
+                    </div>
+
+                    <br></br>
                     <input name="title" type='text' placeholder='Game Title'></input>
                     <input name="start" type='number' placeholder='Starting Year'></input>
                     <input name="status" type='text' placeholder='Completion Status'></input>
@@ -192,6 +199,13 @@ var tableStyle = {
     margin: '0 auto',
     marginTop: '20px',
     borderSpacing: '0px'
+}
+
+var filterStyle = {
+    display: 'inline-block',
+    margin: '10px',
+    position: 'relative',
+    right: '-10%'
 }
 
 export default GameInput;
