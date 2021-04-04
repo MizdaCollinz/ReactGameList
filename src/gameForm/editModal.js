@@ -4,13 +4,13 @@ import '../styles/buttons.css';
 import '../styles/editModal.css';
 
 class EditModal extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.open = this.open.bind(this);
         this.edit = this.edit.bind(this);
     }
 
-    open(entry){
+    open(entry) {
 
         //Access form inputs
         let name = this.refs.title;
@@ -23,7 +23,7 @@ class EditModal extends React.Component {
         status.value = entry.status;
     }
 
-    edit(e){
+    edit(e) {
         e.preventDefault();
         console.log("Prevented");
         let id = this.props.entry.name;
@@ -32,40 +32,58 @@ class EditModal extends React.Component {
             year: this.refs.year.value,
             status: this.refs.status.value
         };
-        this.props.edit(id,newEntry);
+        this.props.edit(id, newEntry);
         this.props.close();
     }
 
     render() {
         return (
-                <Modal
-                    isOpen={this.props.status}
-                    onAfterOpen={() => this.open(this.props.entry)}
-                    contentLabel="Edit Modal"
-                    onRequestClose={this.props.close}
-                    style = {modalStyle}
-                >
-                    <h2>Edit this game entry</h2>
-                    <form>
-                        <input name="title" type='text' placeholder='Game Title' ref="title"></input>
-                        <br />
-                        <input name="start" type='number' placeholder='Starting Year' ref="year"></input>
-                        <br />
-                        <input name="status" type='text' placeholder='Completion Status' ref="status"></input>
-                        <br />
-                        <input className="button" type='submit' value= "Save Changes" onClick={this.edit}></input>
-                    </form>
-
-                </Modal>
+            <Modal
+                isOpen={this.props.status}
+                onAfterOpen={() => this.open(this.props.entry)}
+                contentLabel="Edit Modal"
+                onRequestClose={this.props.close}
+                style={modalStyle}
+            >
+                <h2>Edit this game entry</h2>
+                <form>
+                    <input
+                        name="title"
+                        type='text'
+                        placeholder='Game Title'
+                        ref="title"
+                    />
+                    <br/>
+                    <input
+                        name="start"
+                        type='number'
+                        placeholder='Starting Year'
+                        ref="year"
+                    />
+                    <br/>
+                    <input
+                        name="status"
+                        type='text'
+                        placeholder='Completion Status'
+                        ref="status"
+                    />
+                    <br/>
+                    <input
+                        className="button"
+                        type='submit'
+                        value="Save Changes"
+                        onClick={this.edit}
+                    />
+                </form>
+            </Modal>
         );
     }
-
 }
 
-var modalStyle = {
+const modalStyle = {
     content: {
-        height:'250px',
-        width:'350px',
+        height: '250px',
+        width: '350px',
         margin: 'auto auto',
         textAlign: 'center'
     }

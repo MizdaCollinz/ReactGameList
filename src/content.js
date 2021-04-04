@@ -1,5 +1,5 @@
 import React from 'react';
-import GameInput from './gameForm/gameInput.js'
+import GameInput from './gameForm/gameInput.jsx'
 
 
 class Content extends React.Component {
@@ -9,24 +9,15 @@ class Content extends React.Component {
             // Regular comments out here
             <section style={sectionStyle}> 
                 {/*Special comment format used here as JSX*/}
-                <GameInput></GameInput>
-                {/* <div style={fillerStyle} > General Div </div> */}
-                
-
+                <GameInput/>
             </section>
         );
     }
 }
 
-var sectionStyle = {
+const sectionStyle = {
     backgroundColor: '#363636',
     padding: '50px'
-};
-
-var fillerStyle = {
-    height: '100px',
-    width: '40%',
-    backgroundColor: 'white'
 };
 
 export default Content;

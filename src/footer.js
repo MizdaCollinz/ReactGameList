@@ -10,7 +10,7 @@ class Footer extends React.Component {
     }
 }
 
-var footerStyle = {
+const footerStyle = {
     position: 'fixed',
     bottom: '0px',
     width: '100%',
